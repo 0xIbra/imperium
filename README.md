@@ -37,8 +37,27 @@ obj = {
 expr = Expression()
 print(expr.evaluate('exists("subject.price")'), obj) # Output: True
 ```
-**Imperium** has built-in functions to facilitate certain actions/verifications.
 
-Function        |   Argument(s)             |   Description
-----------------|---------------------------|----------------
-**exists()**    | key (Ex: subject.price)   | Checks if the given attribute/key exists in the subject.
+### Testing regular expressions
+```python
+from imperium.evaluator import Expression
+
+obj = {
+    'name': 'iPhone',
+    'model': '11 Pro',
+    'price': 1299.90,
+    'state': 'new'
+}
+
+expression = "exists('subject.name') && matches('IPHONE', subject['name'], 'i')"
+
+expr = Expression()
+res = expr.evaluate(expression, obj)
+print(res) # Output: True
+```
+
+**Imperium** has built-in functions to facilitate certain actions/verifications.
+Function        |   Argument(s)                 |   Description
+----------------|-------------------------------|----------------
+**exists()**    | key (Ex: subject.price)       | Checks if the given attribute/key exists in the subject.
+**matches()**   | regex, value, flag (i | m)    | Tests a regular expression

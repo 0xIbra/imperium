@@ -30,3 +30,17 @@ class Expression:
             subject = subject[value]
         
         return True
+
+    def matches(self, expr, value, flag=None):
+        if flag is not None:
+            if flag == 'i':
+                result = re.match(expr, value, re.IGNORECASE)
+            elif flag == 'm':
+                result = re.match(expr, value, re.MULTILINE)
+        else:
+            result = re.match(expr, value)
+
+        if result:
+            return True
+        else:
+            return False
