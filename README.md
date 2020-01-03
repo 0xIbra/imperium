@@ -57,6 +57,7 @@ print(res) # Output: True
 ```
 
 **Imperium** has built-in functions to facilitate certain actions/verifications.
+
 Function        |   Argument(s)                 |   Description
 ----------------|-------------------------------|----------------
 **exists()**    | key (Ex: subject.price)       | Checks if the given attribute/key exists in the subject.
