@@ -21,7 +21,7 @@ expr = Expression()
 if expr.evaluate('$subject.state == "new"', obj): # "$subject" is a reserved key
     # Your logic
 ```
-To access the data in the given subject, use the "subject" key as shown above.
+To access the data in the given subject, use the "$subject" key as shown above.
 
 ### Check if the subject has an attribute
 ```python
