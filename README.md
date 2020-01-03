@@ -10,7 +10,7 @@ pip install imperium
 ```python
 from imperium.evaluator import Expression
 
-subject = {
+obj = {
     'name': 'iPhone',
     'model': '11 Pro',
     'price': 1299.90,
@@ -18,7 +18,7 @@ subject = {
 }
 
 expr = Expression()
-if expr.evaluate('subject.state == "new"', subject): # "subject" is a reserved key
+if expr.evaluate('$subject.state == "new"', obj): # "$subject" is a reserved key
     # Your logic
 ```
 To access the data in the given subject, use the "subject" key as shown above.
@@ -35,7 +35,7 @@ obj = {
 }
 
 expr = Expression()
-res = expr.evaluate('exists("subject.price", subject)', obj) # REMINDER: "subject" key let's you access the object that you passed to the evaluate method (obj in this case)
+res = expr.evaluate('exists("$subject.price", $subject)', obj) # REMINDER: "$subject" key let's you access the object that you passed to the evaluate method (obj in this case)
 print(res) # Output: True
 ```
 
@@ -51,8 +51,8 @@ obj = {
 }
 
 # Passing the name attribute of the subject
-# REMINDER: "subject" let's you access the object/subject passed to the evaluate method (obj in this case) 
-expression = "exists('subject.name', subject) && matches('IPHONE', subject['name'], 'i')"
+# REMINDER: "$subject" let's you access the object/subject passed to the evaluate method (obj in this case) 
+expression = "exists('$subject.name',$subject) && matches('IPHONE', $subject['name'], 'i')"
 
 expr = Expression()
 res = expr.evaluate(expression, obj)
@@ -63,5 +63,5 @@ print(res) # Output: True
 
 Function        |   Argument(s)                             |   Description
 ----------------|-------------------------------------------|----------------
-**exists()**    | key (Ex: subject.price), subject          | Checks if the given attribute/key exists in the given subject.
+**exists()**    | key (Ex: $subject.price), $subject        | Checks if the given attribute/key exists in the given subject.
 **matches()**   | regex, value, flag (**i** or **m**)       | Tests a regular expression

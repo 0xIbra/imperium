@@ -1,4 +1,4 @@
-from helpers import exists, matches
+from imperium.helpers import exists, matches
 import parser, re
 
 AUTHORIZED_FUNCTIONS = { 
@@ -18,6 +18,7 @@ class Expression:
                 print('[error] Unauthorized function usage "{}"'.format(match))
                 exit(1)
 
+        expression = expression.replace('$subject', 'subject')
         expr = parser.expr(expression)
 
         return eval(expr.compile(''))

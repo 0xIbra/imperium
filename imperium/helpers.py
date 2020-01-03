@@ -2,8 +2,8 @@ import re
 
 def exists(key, subject):
     split = key.split('.')
-    for value in split:
-        if value == 'subject':
+    for i, value in enumerate(split):
+        if i == 0 and value == '$subject' or value == 'subject':
             continue
 
         if not value in subject:
