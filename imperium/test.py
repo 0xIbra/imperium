@@ -15,7 +15,7 @@ subject = {
     }
 }
 
-expr = "exists('subject.maker.original') and subject['maker']['original'] == 'AUDI' and matches('(diesel)', subject['energy']['original'], 'i')"
+expr = "exists('subject.maker.original', subject) and subject['maker']['original'] == 'AUDI' and matches('(diesel)', subject['energy']['original'], 'i')"
 
 expression = Expression()
 res = expression.evaluate(expr, subject)

@@ -35,7 +35,8 @@ obj = {
 }
 
 expr = Expression()
-print(expr.evaluate('exists("subject.price")'), obj) # Output: True
+res = expr.evaluate('exists("subject.price", subject)', obj) # REMINDER: "subject" key let's you access the object that you passed to the evaluate method (obj in this case)
+print(res) # Output: True
 ```
 
 ### Testing regular expressions
@@ -49,7 +50,9 @@ obj = {
     'state': 'new'
 }
 
-expression = "exists('subject.name') && matches('IPHONE', subject['name'], 'i')"
+# Passing the name attribute of the subject
+# REMINDER: "subject" let's you access the object/subject passed to the evaluate method (obj in this case) 
+expression = "exists('subject.name', subject) && matches('IPHONE', subject['name'], 'i')"
 
 expr = Expression()
 res = expr.evaluate(expression, obj)
@@ -58,7 +61,7 @@ print(res) # Output: True
 
 **Imperium** has built-in functions to facilitate certain actions/verifications.
 
-Function        |   Argument(s)                 |   Description
-----------------|-------------------------------|----------------
-**exists()**    | key (Ex: subject.price)       | Checks if the given attribute/key exists in the subject.
-**matches()**   | regex, value, flag (**i** or **m**)    | Tests a regular expression
+Function        |   Argument(s)                             |   Description
+----------------|-------------------------------------------|----------------
+**exists()**    | key (Ex: subject.price), subject          | Checks if the given attribute/key exists in the given subject.
+**matches()**   | regex, value, flag (**i** or **m**)       | Tests a regular expression
