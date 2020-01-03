@@ -60,4 +60,4 @@ print(res) # Output: True
 Function        |   Argument(s)                 |   Description
 ----------------|-------------------------------|----------------
 **exists()**    | key (Ex: subject.price)       | Checks if the given attribute/key exists in the subject.
-**matches()**   | regex, value, flag (i | m)    | Tests a regular expression
+**matches()**   | regex, value, flag (i \| m)    | Tests a regular expression
