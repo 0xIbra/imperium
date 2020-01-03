@@ -5,10 +5,10 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='imperium',
-    version='0.0.6',
+    version='0.0.7',
     author='Ibragim Abubakarov',
     author_email='ibragim.ai95@gmail.com',
-    description='Imperium is a micro python package that allows you to easily evaluate conditional expressions.',
+    description='Imperium is a python package that allows you to easily evaluate python expressions',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/ibragim64/imperium',
