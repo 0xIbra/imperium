@@ -34,8 +34,12 @@ obj = {
     'state': 'new'
 }
 
+someother_obj = {
+    'name': 'John Doe'
+}
+
 expr = Expression()
-res = expr.evaluate('exists("$subject.price", $subject)', obj) # REMINDER: "$subject" key let's you access the object that you passed to the evaluate method (obj in this case)
+res = expr.evaluate('exists("$subject.price", $subject)', subject=obj, source=someother_obj) # REMINDER: "$subject" key let's you access the object that you passed to the evaluate method (obj in this case)
 print(res) # Output: True
 ```
 
@@ -50,16 +54,21 @@ obj = {
     'state': 'new'
 }
 
+buyer = {
+    'fullname': 'John Doe'
+}
+
 # Passing the name attribute of the subject
-# REMINDER: "$subject" let's you access the object/subject passed to the evaluate method (obj in this case) 
-expression = "exists('$subject.name',$subject) && matches('IPHONE', $subject['name'], 'i')"
+# REMINDER: "$subject" let's you access the object/subject passed to the evaluate method (obj in this case)
+# and "$source" let's you access the optional source object passed to the evaluate method 
+expression = "exists('$subject.name', $subject) && matches('IPHONE', $subject['name'], 'i')"
 
 expr = Expression()
-res = expr.evaluate(expression, obj)
+res = expr.evaluate(expression, subject=obj, source=buyer)
 print(res) # Output: True
 ```
 
-**Imperium** has built-in functions to facilitate certain actions/verifications.
+**Imperium** has built-in functions to simplify certain actions/verifications.
 
 Function        |   Argument(s)                             |   Description
 ----------------|-------------------------------------------|----------------
