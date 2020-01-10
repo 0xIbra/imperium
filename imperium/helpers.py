@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import re
 
 def exists(key, subject):
@@ -27,3 +28,29 @@ def matches(expr, subject, flag=None):
         return True
     else:
         return False
+
+def date(string=None, format='%Y-%m-%d'):
+    if string is not None:
+        return datetime.strptime(string, format)
+
+    return datetime.now()
+
+def date_modify(date, operation, valuetype, value):
+    operation = operation.lower()
+    if operation == 'subtract' or operation == '-':
+        if valuetype == 'days' or valuetype == 'day':
+            return date - timedelta(days=int(value))
+        if valuetype == 'months' or valuetype == 'month':
+            return date - timedelta(days=int(value) * 30)
+        if valuetype == 'years' or valuetype == 'year':
+            return date - timedelta(days=int(value) * 365)
+
+    if operation == 'add' or operation == '+':
+        if valuetype == 'days' or valuetype == 'day':
+            return date + timedelta(days=int(value))
+        if valuetype == 'months' or valuetype == 'month':
+            return date + timedelta(days=int(value) * 30)
+        if valuetype == 'years' or valuetype == 'year':
+            return date + timedelta(days=int(value) * 365)
+
+    return date

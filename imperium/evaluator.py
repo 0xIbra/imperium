@@ -1,9 +1,11 @@
-from imperium.helpers import exists, matches
+from imperium.helpers import exists, matches, date, date_modify
 import parser, re
 
 AUTHORIZED_FUNCTIONS = { 
     'exists': True,
-    'matches': True
+    'matches': True,
+    'date': True,
+    'date_modify': True
 }
 
 class Expression:

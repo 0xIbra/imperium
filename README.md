@@ -70,7 +70,9 @@ print(res) # Output: True
 
 **Imperium** has built-in functions to simplify certain actions/verifications.
 
-Function        |   Argument(s)                             |   Description
-----------------|-------------------------------------------|----------------
-**exists()**    | key (Ex: $subject.price), $subject        | Checks if the given attribute/key exists in the given subject.
-**matches()**   | regex, value, flag (**i** or **m**)       | Tests a regular expression
+Function            |   Argument(s)                                             |   Description
+--------------------|-----------------------------------------------------------|----------------
+**exists()**        | key (Ex: $subject.price), $subject                        | Checks if the given attribute/key exists in the given subject.
+**matches()**       | regex, value, flag (**i** or **m**)                       | Tests a regular expression
+**date()**          | datestring, format                                        | **datestring** and **format** are both optional, provide them to the function if you want to convert a date string to date object. <br> If these two arguments are left emtpy, the function returns date object with current date and time.
+**date_modify()**   | date, operation (**+** \| **-**), valuetype (**days** \| **months** \| **years**), value: **int**  | This function can add and subtract days, months and years from a date object.
