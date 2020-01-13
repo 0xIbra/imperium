@@ -1,4 +1,5 @@
 from imperium.helpers import exists, matches, date, date_modify
+from imperium.exceptions import UnsupportedFunctionException
 import parser, re
 
 AUTHORIZED_FUNCTIONS = { 
@@ -17,8 +18,7 @@ class Expression:
         matched = re.findall("([a-zA-Z_{1}][a-zA-Z0-9_]+)\s?\(", expression)
         for match in matched:
             if match not in AUTHORIZED_FUNCTIONS:
-                print('[error] Unsupported function "{}"'.format(match))
-                exit(1)
+                raise UnsupportedFunctionException('[error] Unsupported function "{}"'.format(match))
 
         expression = expression.replace('$subject', 'subject')
         expression = expression.replace('$source', 'source')
