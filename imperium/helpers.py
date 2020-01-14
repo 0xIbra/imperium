@@ -15,8 +15,8 @@ def exists(key, subject):
     return True
 
 def matches(expr, subject, flag=None):
-    flag = flag.lower()
     if flag is not None:
+        flag = flag.lower()
         if flag == 'i':
             result = re.match(expr, subject, re.IGNORECASE)
         elif flag == 'm':
