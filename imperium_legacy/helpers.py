@@ -64,14 +64,22 @@ def date_modify(date_obj, operation, value_type, value):
 
 def get_value_xml(key: str, subject, raw=True):
     try:
-        key_tag = subject.find(key)
-        if key_tag is None:
-            return None
+        keys = key.split('.')
+        keys_count = len(keys)
+        for i, dim in enumerate(keys):
+            key_tag = subject.find(dim)
+            if key_tag is None:
+                return None
 
-        if raw:
-            return key_tag.text
-        else:
-            return key_tag
+            if keys_count == i + 1:
+                if raw:
+                    return key_tag.text
+                else:
+                    return key_tag
+            else:
+                subject = key_tag
+
+        return None
     except:
         # TODO: Maybe log something ?
         return None
