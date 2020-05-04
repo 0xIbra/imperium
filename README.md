@@ -61,6 +61,10 @@ buyer = {
 # Passing the name attribute of the subject
 # REMINDER: "$subject" let's you access the object/subject passed to the evaluate method (obj in this case)
 # and "$source" let's you access the optional source object passed to the evaluate method 
+
+# INFO: "matches" function let's you evaluate a regular expression against a value, note that the supported flag are "i" and "m"
+# if you use something else than these two flags, the evaluation will procede by ignoring the flag since it didn't recognize it.
+
 expression = "exists('$subject.name', $subject) && matches('IPHONE', $subject['name'], 'i')"
 
 expr = Expression()

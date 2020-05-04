@@ -1,18 +1,20 @@
 from datetime import datetime, timedelta
 import re
 
+
 def exists(key, subject):
     split = key.split('.')
     for i, value in enumerate(split):
         if i == 0 and value == '$subject' or value == 'subject':
             continue
 
-        if not value in subject:
+        if value not in subject:
             return False
         
         subject = subject[value]
     
     return True
+
 
 def matches(expr, subject, flag=None):
     if flag is not None:
@@ -21,6 +23,8 @@ def matches(expr, subject, flag=None):
             result = re.match(expr, subject, re.IGNORECASE)
         elif flag == 'm':
             result = re.match(expr, subject, re.MULTILINE)
+        else:
+            result = re.match(expr, subject)
     else:
         result = re.match(expr, subject)
 
@@ -29,11 +33,13 @@ def matches(expr, subject, flag=None):
     else:
         return False
 
+
 def date(string=None, format='%Y-%m-%d'):
     if string is not None:
         return datetime.strptime(string, format)
 
     return datetime.now()
+
 
 def date_modify(date, operation, valuetype, value):
     operation = operation.lower()
