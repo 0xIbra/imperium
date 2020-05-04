@@ -1,5 +1,5 @@
-from imperium.helpers import exists, matches, date, date_modify
-from imperium.exceptions import UnsupportedFunctionException
+from imperium_legacy.helpers import exists, matches, date, date_modify
+from imperium_legacy.exceptions import UnsupportedFunctionException
 import parser
 import re
 

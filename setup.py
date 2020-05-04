@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='imperium-legacy',
-    version='0.0.1',
+    version='0.0.2',
     author='Ibragim Abubakarov',
     author_email='ibragim.ai95@gmail.com',
     maintainer='Ibragim Abubakarov',
@@ -14,7 +14,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/ibragim64/imperium',
-    packages=['imperium'],
+    packages=['imperium_legacy'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",

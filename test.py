@@ -1,4 +1,4 @@
-from imperium import Expression
+from imperium_legacy import Expression
 
 subject = {
     'maker': {
