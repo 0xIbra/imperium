@@ -8,7 +8,7 @@ pip install imperium
 
 ## Usage
 ```python
-from imperium.evaluator import Expression
+from imperium import Expression
 
 obj = {
     'name': 'iPhone',
@@ -25,7 +25,7 @@ To access the data in the given subject, use the "$subject" key as shown above.
 
 ### Check if the subject has an attribute
 ```python
-from imperium.evaluator import Expression
+from imperium import Expression
 
 obj = {
     'name': 'iPhone',

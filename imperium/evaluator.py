@@ -1,6 +1,7 @@
 from imperium.helpers import exists, matches, date, date_modify
 from imperium.exceptions import UnsupportedFunctionException
-import parser, re
+import parser
+import re
 
 AUTHORIZED_FUNCTIONS = { 
     'exists': True,
@@ -9,19 +10,21 @@ AUTHORIZED_FUNCTIONS = {
     'date_modify': True
 }
 
+
 class Expression:
 
     def evaluate(self, expression, subject, source=None):
-        self.expression = expression
-        self.subject = subject
-
-        matched = re.findall("([a-zA-Z_{1}][a-zA-Z0-9_]+)\s?\(", expression)
+        matched = re.findall(r"([a-zA-Z_{1}][a-zA-Z0-9_]+)\s?\(", expression)
         for match in matched:
             if match not in AUTHORIZED_FUNCTIONS:
                 raise UnsupportedFunctionException('[error] Unsupported function "{}"'.format(match))
 
-        expression = expression.replace('$subject', 'subject')
-        expression = expression.replace('$source', 'source')
+        subject_reg = r"""(?<![A-Za-z1-9'\"$#\[.])(\$subject|subject|\$out|out)\b"""
+        source_reg = r"""(?<![A-Za-z1-9'\"$#\[.])(\$source|source|\$in|in)\b"""
+
+        expression = re.sub(subject_reg, 'subject', expression)
+        expression = re.sub(source_reg, 'source', expression)
+
         expr = parser.expr(expression)
 
         return eval(expr.compile(''))

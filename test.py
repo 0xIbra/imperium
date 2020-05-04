@@ -1,4 +1,4 @@
-from evaluator import Expression
+from imperium import Expression
 
 subject = {
     'maker': {
@@ -15,8 +15,8 @@ subject = {
     }
 }
 
-expr = "exists('$subject.maker.original', $subject) and $subject['maker']['original'] == 'AUDI' and matches('(diesel)', $subject['energy']['original'], 'i')"
+expr = "exists('$subject.maker.original', $out) and $subject['maker']['original'] == 'AUDI' and matches('(diesel)', $out['energy']['original'], 'i') and in is None"
 
 expression = Expression()
 res = expression.evaluate(expr, subject)
-print(res)
+print('Result: ', res)
