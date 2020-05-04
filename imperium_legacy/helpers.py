@@ -34,29 +34,55 @@ def matches(expr, subject, flag=None):
         return False
 
 
-def date(string=None, format='%Y-%m-%d'):
+def date(string=None, date_format='%Y-%m-%d'):
     if string is not None:
-        return datetime.strptime(string, format)
+        return datetime.strptime(string, date_format)
 
     return datetime.now()
 
 
-def date_modify(date, operation, valuetype, value):
+def date_modify(date_obj, operation, value_type, value):
     operation = operation.lower()
     if operation == 'subtract' or operation == '-':
-        if valuetype == 'days' or valuetype == 'day':
-            return date - timedelta(days=int(value))
-        if valuetype == 'months' or valuetype == 'month':
-            return date - timedelta(days=int(value) * 30)
-        if valuetype == 'years' or valuetype == 'year':
-            return date - timedelta(days=int(value) * 365)
+        if value_type == 'days' or value_type == 'day':
+            return date_obj - timedelta(days=int(value))
+        if value_type == 'months' or value_type == 'month':
+            return date_obj - timedelta(days=int(value) * 30)
+        if value_type == 'years' or value_type == 'year':
+            return date_obj - timedelta(days=int(value) * 365)
 
     if operation == 'add' or operation == '+':
-        if valuetype == 'days' or valuetype == 'day':
-            return date + timedelta(days=int(value))
-        if valuetype == 'months' or valuetype == 'month':
-            return date + timedelta(days=int(value) * 30)
-        if valuetype == 'years' or valuetype == 'year':
-            return date + timedelta(days=int(value) * 365)
+        if value_type == 'days' or value_type == 'day':
+            return date_obj + timedelta(days=int(value))
+        if value_type == 'months' or value_type == 'month':
+            return date_obj + timedelta(days=int(value) * 30)
+        if value_type == 'years' or value_type == 'year':
+            return date_obj + timedelta(days=int(value) * 365)
 
-    return date
+    return date_obj
+
+
+def get_value_xml(key: str, subject, raw=True):
+    try:
+        key_tag = subject.find(key)
+        if key_tag is None:
+            return None
+
+        if raw:
+            return key_tag.text
+        else:
+            return key_tag
+    except:
+        # TODO: Maybe log something ?
+        return None
+
+
+def get_attr_xml(key: str, subject):
+    try:
+        if key not in subject.attrib:
+            return None
+
+        return subject.attrib[key]
+    except:
+        # TODO: Maybe log something ?
+        pass

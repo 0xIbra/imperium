@@ -1,4 +1,4 @@
-from imperium_legacy.helpers import exists, matches, date, date_modify
+from imperium_legacy.helpers import exists, matches, date, date_modify, get_value_xml, get_attr_xml
 from imperium_legacy.exceptions import UnsupportedFunctionException
 import parser
 import re
@@ -7,7 +7,9 @@ AUTHORIZED_FUNCTIONS = {
     'exists': True,
     'matches': True,
     'date': True,
-    'date_modify': True
+    'date_modify': True,
+    'get_value_xml': True,
+    'get_attr_xml': True
 }
 
 
