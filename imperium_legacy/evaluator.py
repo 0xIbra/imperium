@@ -20,7 +20,7 @@ class Expression:
                 raise UnsupportedFunctionException('[error] Unsupported function "{}"'.format(match))
 
         subject_reg = r"""(?<![A-Za-z1-9'\"$#\[.])(\$subject|subject|\$out|out)\b"""
-        source_reg = r"""(?<![A-Za-z1-9'\"$#\[.])(\$source|source|\$in|in)\b"""
+        source_reg = r"""(?<![A-Za-z1-9'\"$#\[.])(\$source|source|\$in)\b"""
 
         expression = re.sub(subject_reg, 'subject', expression)
         expression = re.sub(source_reg, 'source', expression)
